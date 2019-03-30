@@ -84,5 +84,4 @@ public class LocalizarContactosActivity extends FragmentActivity implements OnMa
     public void errorHandler(VolleyError error) {
 
     }
-
 }
