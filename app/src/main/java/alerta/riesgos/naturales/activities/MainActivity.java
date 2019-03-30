@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_locate) {
-            startActivity(new Intent(this, MapsActivity.class));
+            startActivity(new Intent(this, LocalizarContactosActivity.class));
         } else if (id == R.id.nav_safe_zone) {
 
         } else if (id == R.id.nav_people) {
