@@ -20,7 +20,7 @@ public class Contacs extends AppCompatActivity {
 
     public void goToViewTraceRoute(View view){
         Persona p = new Persona("5c9e95889211f52bacde0020", "persona2", null);
-        Intent viewTraceRouteIntent= new Intent(this, ViewTraceRoute.class);
+        Intent viewTraceRouteIntent= new Intent(this, LocalizarContactosActivity.class);
         viewTraceRouteIntent.putExtra("persona", p);
         startActivity(viewTraceRouteIntent);
     }

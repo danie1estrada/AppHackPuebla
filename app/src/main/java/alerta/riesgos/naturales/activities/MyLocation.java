@@ -17,6 +17,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import alerta.riesgos.naturales.services.Queue;
 
 public class MyLocation implements LocationListener {
@@ -56,12 +59,15 @@ public class MyLocation implements LocationListener {
     }
 
     public void sendLocation(Location location){
+        final String lng = Double.toString(location.getLongitude());
+        final String lat =  Double.toString(location.getLatitude());
+
         final Toast info = Toast.makeText(context,
                 location.getLatitude() + " " + location.getLongitude(),
                 Toast.LENGTH_SHORT);
 
         StringRequest request = new StringRequest(
-                Request.Method.POST,
+                Request.Method.PUT,
                 "http://10.50.119.111:3000/api/locaciones-tiempo-real",
                 new Response.Listener<String>(){
                     @Override
@@ -72,12 +78,23 @@ public class MyLocation implements LocationListener {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error){
+                        System.err.println(error);
                         Toast.makeText(context,
                                 "Error al enviar la información de tu ubicación",
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
-        );
+        ){
+          @Override
+          protected Map<String, String> getParams(){
+              Map<String, String> params = new HashMap<String, String>();
+              params.put("id", "5c9e95679211f52bacde001f");
+              params.put("longitud", lng);
+              params.put("latitud", lat);
+
+              return params;
+          }
+        };
 
         queue.addToQueue(request);
     }
