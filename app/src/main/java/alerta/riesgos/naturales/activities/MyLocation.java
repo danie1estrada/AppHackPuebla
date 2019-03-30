@@ -11,15 +11,24 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.maps.model.LatLng;
+
+import alerta.riesgos.naturales.services.Queue;
 
 public class MyLocation implements LocationListener {
 
     Context context;
+    Queue queue;
     LocationManager locationManager;
 
     public MyLocation(Context context) {
         this.context = context;
+        this.queue = Queue.getInstance(this.context);
+
         this.locationManager = (LocationManager)
                 this.context.getSystemService(Context.LOCATION_SERVICE);
     }
@@ -34,12 +43,43 @@ public class MyLocation implements LocationListener {
 
     public void checkOnChangeLocation() {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {}
-        this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 10, 0, this);
+        this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 30, 0, this);
+    }
+
+    public void revokeCheckOnChangeLocation(){
+        this.locationManager.removeUpdates(this);
     }
 
     @Override
-    public void onLocationChanged(android.location.Location location) {
-        Toast.makeText(context, location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_SHORT).show();
+    public void onLocationChanged(Location location) {
+        this.sendLocation(location);
+    }
+
+    public void sendLocation(Location location){
+        final Toast info = Toast.makeText(context,
+                location.getLatitude() + " " + location.getLongitude(),
+                Toast.LENGTH_SHORT);
+
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://10.50.119.111:3000/api/locaciones-tiempo-real",
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){
+                        info.show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        Toast.makeText(context,
+                                "Error al enviar la información de tu ubicación",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        queue.addToQueue(request);
     }
 
     @Override

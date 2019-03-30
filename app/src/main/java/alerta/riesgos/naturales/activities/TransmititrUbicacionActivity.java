@@ -10,6 +10,7 @@ import alerta.riesgos.naturales.R;
 
 public class TransmititrUbicacionActivity extends AppCompatActivity {
 
+    boolean transmitiendo = false;
     MyLocation location;
     Button trasmitirUbicacion;
 
@@ -23,8 +24,16 @@ public class TransmititrUbicacionActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Transmitir ubicación");
     }
 
-    public void reportLocation(View view){
-        Toast.makeText(this, "Enviando tu ubicación", Toast.LENGTH_LONG).show();
-        this.location.checkOnChangeLocation();
+    public void reportLocation(View view) {
+        if (!transmitiendo) {
+            trasmitirUbicacion.setText("Detener transmisión");
+            Toast.makeText(this, "Enviando tu ubicación", Toast.LENGTH_LONG).show();
+            this.location.checkOnChangeLocation();
+        } else {
+            trasmitirUbicacion.setText("Transmitir");
+            Toast.makeText(this, "Se detuvo el envió de ubicación", Toast.LENGTH_LONG).show();
+            this.location.revokeCheckOnChangeLocation();
+        }
+        transmitiendo = !transmitiendo;
     }
 }

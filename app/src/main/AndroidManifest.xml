@@ -46,6 +46,10 @@
         <activity
             android:name=".activities.LocalizarContactosActivity"
             android:label="@string/title_activity_maps" />
+
+        <activity
+            android:name=".activities.TransmititrUbicacionActivity"
+            android:label="Transmitir ubicación" />
     </application>
 
 </manifest>
