@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/image_article_main"
             android:layout_width="0dp"
-            android:layout_height="144dp"
+            android:layout_height="164dp"
             android:adjustViewBounds="true"
             android:clickable="true"
             android:cropToPadding="false"
