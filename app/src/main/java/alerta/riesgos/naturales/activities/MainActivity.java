@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_safe_zone) {
             startActivity(new Intent(this, Albergue.class));
         } else if (id == R.id.nav_people) {
-
+            startActivity(new Intent(this, Contacs.class));
         } else if (id == R.id.nav_location) {
             startActivity(new Intent(this, TransmititrUbicacionActivity.class));
         }

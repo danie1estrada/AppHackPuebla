@@ -2,7 +2,9 @@ package alerta.riesgos.naturales.model;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Serializable {
     public String id;
     public String nombre;
     public LatLng location;

@@ -17,9 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.ViewTraceRoute"></activity>
+        <activity android:name=".activities.Contacs" />
         <activity
             android:name=".activities.Albergue"
-            android:label="@string/title_activity_albergue"></activity>
+            android:label="@string/title_activity_albergue" />
         <activity android:name=".activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,7 +48,6 @@
         <activity
             android:name=".activities.LocalizarContactosActivity"
             android:label="@string/title_activity_maps" />
-
         <activity
             android:name=".activities.TransmititrUbicacionActivity"
             android:label="Transmitir ubicación" />
