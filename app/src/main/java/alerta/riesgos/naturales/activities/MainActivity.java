@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_locate) {
             startActivity(new Intent(this, LocalizarContactosActivity.class));
         } else if (id == R.id.nav_safe_zone) {
-
+            startActivity(new Intent(this, Albergue.class));
         } else if (id == R.id.nav_people) {
 
         } else if (id == R.id.nav_location) {
