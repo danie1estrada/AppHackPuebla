@@ -19,8 +19,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.Albergue"
-            android:label="@string/title_activity_albergue"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_albergue"></activity>
         <activity android:name=".activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
