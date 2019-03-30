@@ -84,7 +84,7 @@ public class Albergue extends FragmentActivity implements OnMapReadyCallback {
     public void responseHandler(String res){
         try {
             JSONArray response = new JSONArray(res);
-            Toast.makeText(this, res, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, res, Toast.LENGTH_LONG).show();
             for(int i = 0, e = response.length(); i < e; i++){
                 JSONObject rawAlbergue = (JSONObject) response.get(i);
 

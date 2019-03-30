@@ -27,11 +27,11 @@ public class TransmititrUbicacionActivity extends AppCompatActivity {
     public void reportLocation(View view) {
         if (!transmitiendo) {
             trasmitirUbicacion.setText("Detener transmisión");
-            Toast.makeText(this, "Enviando tu ubicación", Toast.LENGTH_LONG).show();
+           //Toast.makeText(this, "Enviando tu ubicación", Toast.LENGTH_LONG).show();
             this.location.checkOnChangeLocation();
         } else {
             trasmitirUbicacion.setText("Transmitir");
-            Toast.makeText(this, "Se detuvo el envió de ubicación", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Se detuvo el envió de ubicación", Toast.LENGTH_LONG).show();
             this.location.revokeCheckOnChangeLocation();
         }
         transmitiendo = !transmitiendo;

@@ -50,7 +50,7 @@ public class MyLocation implements LocationListener {
 
     public void checkOnChangeLocation() {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {}
-        this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 30, 0, this);
+        this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 5, 0, this);
     }
 
     public void revokeCheckOnChangeLocation(){
