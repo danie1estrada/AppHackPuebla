@@ -42,6 +42,7 @@ public class LocalizarContactosActivity extends FragmentActivity implements OnMa
     private ArrayList<Persona> personas;
 
     private MarkerOptions options;
+    private Marker marker;
 
     Timer timer;
     final Handler handler = new Handler();
@@ -81,11 +82,11 @@ public class LocalizarContactosActivity extends FragmentActivity implements OnMa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        putMarker(this.location.getLocation(), "Posición actual",0, true);
+        //putMarker(this.location.getLocation(), "Posición actual",0, true);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location.getLocation(), 13.0f ));
         options.title("");
         options.position(location.getLocation());
-        mMap.addMarker(options);
+        marker = mMap.addMarker(options);
 
         timer.schedule(task, 1, 5000);
         Toast.makeText(this, "empieza", Toast.LENGTH_SHORT).show();
@@ -195,10 +196,12 @@ public class LocalizarContactosActivity extends FragmentActivity implements OnMa
         Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
         try {
             JSONObject position = new JSONObject(response);
-            options.position(new LatLng(
-                Double.parseDouble(position.get("latitud").toString()),
-                Double.parseDouble(position.get("longitud").toString())
+            JSONObject locacion = position.getJSONObject("locacion");
+            marker.setPosition(new LatLng(
+                Double.parseDouble(locacion.get("latitud").toString()),
+                Double.parseDouble(locacion.get("longitud").toString())
             ));
+
         } catch (JSONException e) { }
     }
 

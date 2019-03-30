@@ -14,8 +14,12 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.maps.model.LatLng;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,13 +70,22 @@ public class MyLocation implements LocationListener {
                 location.getLatitude() + " " + location.getLongitude(),
                 Toast.LENGTH_SHORT);
 
-        StringRequest request = new StringRequest(
+        JSONObject body = new JSONObject();
+        try {
+            body.put("idPersona", "5c9e95679211f52bacde001f");
+            body.put("longitud", lng);
+            body.put("latitud", lat);
+        } catch (JSONException e) { }
+
+        JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.PUT,
-                "http://10.50.119.111:3000/api/locaciones-tiempo-real",
-                new Response.Listener<String>(){
+                "http://104.237.130.36:3000/api/locaciones-tiempo-real",
+                body,
+                new Response.Listener<JSONObject>(){
                     @Override
-                    public void onResponse(String response){
+                    public void onResponse(JSONObject response){
                         info.show();
+                        a(response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -97,6 +110,10 @@ public class MyLocation implements LocationListener {
         };
 
         queue.addToQueue(request);
+    }
+
+    public void a(Object error) {
+        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

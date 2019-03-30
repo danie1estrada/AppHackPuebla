@@ -64,7 +64,7 @@ public class Albergue extends FragmentActivity implements OnMapReadyCallback {
     public void getAlbergues(){
         StringRequest request = new StringRequest(
                 Request.Method.GET,
-                "http://10.50.119.111:3000/api/refugios",
+                "http://104.237.130.36:3000/api/refugios",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
