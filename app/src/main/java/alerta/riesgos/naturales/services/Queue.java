@@ -19,7 +19,13 @@ public class Queue {
         if (instance == null) {
             instance = new Queue(context);
         }
+
+
         return instance;
+    }
+
+    public RequestQueue getRequestQueue(){
+        return requestQueue;
     }
 
     public <T> void addToQueue(Request request) {
