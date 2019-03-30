@@ -1,15 +1,9 @@
 package alerta.riesgos.naturales.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,11 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import alerta.riesgos.naturales.R;
-import alerta.riesgos.naturales.model.Persona;
 import alerta.riesgos.naturales.model.Refugio;
 import alerta.riesgos.naturales.services.Queue;
 
@@ -97,10 +88,10 @@ public class Albergue extends FragmentActivity implements OnMapReadyCallback {
             for(int i = 0, e = response.length(); i < e; i++){
                 JSONObject rawAlbergue = (JSONObject) response.get(i);
 
-                LatLng latlng = new LatLng(
-                        Double.parseDouble(rawAlbergue.get("latitud").toString()),
-                        Double.parseDouble(rawAlbergue.get("longitd").toString())
-                );
+                Double latitud = Double.parseDouble(rawAlbergue.get("longitd").toString());
+                Double longitud =Double.parseDouble(rawAlbergue.get("latitud").toString());
+
+                LatLng latlng = new LatLng(latitud, longitud);
                 Refugio refugio = new Refugio(
                         rawAlbergue.get("id").toString(),
                         rawAlbergue.get("nombre").toString(),
@@ -108,11 +99,8 @@ public class Albergue extends FragmentActivity implements OnMapReadyCallback {
                 );
 
                 refugios.add(refugio);
-                System.out.println(rawAlbergue.get("latitud"));
-                System.out.println(rawAlbergue.get("latitud").toString());
-                System.out.println("###" + Double.parseDouble(rawAlbergue.get("latitud").toString()));
-
-                this.putMarker(latlng, refugio.nombre, 0,false);
+                System.out.println(refugio);
+                this.putMarker(latlng, refugio.nombre, 2,false);
             }
         } catch (JSONException e1) {
             e1.printStackTrace();
