@@ -71,15 +71,10 @@ public class ViewTraceRoute extends FragmentActivity implements OnMapReadyCallba
     }
 
     public void traceRoute(){
-        this.locations.add(new LatLng( 51.5, -0.1));
-        this.locations.add(new LatLng( 51.2, -0.2));
-        this.locations.add(new LatLng( 51.3, -0.3));
-        this.locations.add(new LatLng( 51.4, -0.4));
-        this.locations.add(new LatLng( 51.5, -0.5));
+
         Polyline line = mMap.addPolyline(new PolylineOptions()
-                .add((new LatLng( 51.5, -0.1)), new LatLng( 51.2, -0.2), new LatLng( 51.2, -0.3))
+                .add(new LatLng(51.5, -0.1), new LatLng(40.7, -74.0))
                 .width(5)
                 .color(Color.RED));
-
     }
 }

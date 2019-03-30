@@ -14,7 +14,9 @@ public class Contacs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacs);
+        getSupportActionBar().setTitle("Contactos");
     }
+
 
     public void goToViewTraceRoute(View view){
         Persona p = new Persona("5c9e95889211f52bacde0020", "persona2", null);
